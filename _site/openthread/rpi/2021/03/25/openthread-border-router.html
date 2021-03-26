@@ -47,12 +47,41 @@
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="openthread">OpenThread</h1>
 
-<p>OpenThread is an opensource implementation of the <a href="https://openthread.io/guides/thread-primer">thread</a> — an IPv6-based networking protocol using the IEEE 802.15.4 physical layer (zigbee).  Its can be implemented on many simple devices and development tools from popular manufacturers like nordic and stm.</p>
+<p>OpenThread is an opensource implementation of the <a href="https://www.threadgroup.org/What-is-Thread/Thread-Benefits">thread</a> — an IPv6-based networking protocol using the IEEE 802.15.4 physical layer (zigbee).  Its can be implemented on many simple devices and development tools from popular manufacturers like nordic and stm.</p>
 
 <p>modify the file <code class="language-plaintext highlighter-rouge">/boot/config.txt</code>:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">enable_uart</span><span class="o">=</span>1
 <span class="nv">dtoverlay</span><span class="o">=</span>pi3-disable-bt</code></pre></figure>
+
+<p>https://openthread.io/guides/border-router/build</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install vim git
+
+
+
+git clone https://github.com/openthread/ot-br-posix
+</code></pre></div></div>
+
+<p>RCP Build for nrf52</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/projects
+$ git clone --recursive https://github.com/openthread/ot-nrf528xx.git
+$ cd ot-nrf528xx
+$ script/build nrf52840 USB_trans
+
+
+$ cd ~/projects/ot-nrf528xx/build/bin
+$ arm-none-eabi-objcopy -O ihex ot-rcp ot-rcp.hex
+
+
+nrfjprog -f nrf52 --chiperase --program ~/projects/ot-nrf528xx/build/bin/ot-rcp.hex --reset
+</code></pre></div></div>
+
+<p>https://openthread.io/platforms/co-processor/firmware</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nrfjprog -f nrf52 --chiperase --program ~/Downloads/ot-ncp-ftd-gae2b0194-nrf52840.hex --reset
+</code></pre></div></div>
 
 
   </div><a class="u-url" href="/openthread/rpi/2021/03/25/openthread-border-router.html" hidden></a>

@@ -1,8 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-03-25T22:53:20-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Galen’s Tech Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">OpenThread Border Router with Raspberry Pi</title><link href="http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router.html" rel="alternate" type="text/html" title="OpenThread Border Router with Raspberry Pi" /><published>2021-03-25T08:56:46-04:00</published><updated>2021-03-25T08:56:46-04:00</updated><id>http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router</id><content type="html" xml:base="http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router.html">&lt;h1 id=&quot;openthread&quot;&gt;OpenThread&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-03-25T22:59:23-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Galen’s Tech Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">OpenThread Border Router with Raspberry Pi</title><link href="http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router.html" rel="alternate" type="text/html" title="OpenThread Border Router with Raspberry Pi" /><published>2021-03-25T08:56:46-04:00</published><updated>2021-03-25T08:56:46-04:00</updated><id>http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router</id><content type="html" xml:base="http://localhost:4000/openthread/rpi/2021/03/25/openthread-border-router.html">&lt;h1 id=&quot;openthread&quot;&gt;OpenThread&lt;/h1&gt;
 
-&lt;p&gt;OpenThread is an opensource implementation of the &lt;a href=&quot;https://openthread.io/guides/thread-primer&quot;&gt;thread&lt;/a&gt; — an IPv6-based networking protocol using the IEEE 802.15.4 physical layer (zigbee).  Its can be implemented on many simple devices and development tools from popular manufacturers like nordic and stm.&lt;/p&gt;
+&lt;p&gt;OpenThread is an opensource implementation of the &lt;a href=&quot;https://www.threadgroup.org/What-is-Thread/Thread-Benefits&quot;&gt;thread&lt;/a&gt; — an IPv6-based networking protocol using the IEEE 802.15.4 physical layer (zigbee).  Its can be implemented on many simple devices and development tools from popular manufacturers like nordic and stm.&lt;/p&gt;
 
 &lt;p&gt;modify the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/boot/config.txt&lt;/code&gt;:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;enable_uart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
-&lt;span class=&quot;nv&quot;&gt;dtoverlay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;pi3-disable-bt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html">OpenThread</summary></entry></feed>
+&lt;span class=&quot;nv&quot;&gt;dtoverlay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;pi3-disable-bt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;https://openthread.io/guides/border-router/build&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt install vim git
+
+
+
+git clone https://github.com/openthread/ot-br-posix
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;RCP Build for nrf52&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/projects
+$ git clone --recursive https://github.com/openthread/ot-nrf528xx.git
+$ cd ot-nrf528xx
+$ script/build nrf52840 USB_trans
+
+
+$ cd ~/projects/ot-nrf528xx/build/bin
+$ arm-none-eabi-objcopy -O ihex ot-rcp ot-rcp.hex
+
+
+nrfjprog -f nrf52 --chiperase --program ~/projects/ot-nrf528xx/build/bin/ot-rcp.hex --reset
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;https://openthread.io/platforms/co-processor/firmware&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nrfjprog -f nrf52 --chiperase --program ~/Downloads/ot-ncp-ftd-gae2b0194-nrf52840.hex --reset
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">OpenThread</summary></entry></feed>
