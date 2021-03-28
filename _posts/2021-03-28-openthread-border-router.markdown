@@ -18,6 +18,7 @@ This is largely an elaboration on the [how-to][ot-br-howto] openthread provides,
 For this specific version the RCP will be built ontop of the Nordic [nRF52840-DK], which will connect to the Raspberry Pi via USB.
 
 [nRF52840-DK]: https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-DK
+
 # Setup RPi
 
 First setup the raspberry pi.  The following materials were used:
